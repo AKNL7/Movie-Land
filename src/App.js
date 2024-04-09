@@ -4,10 +4,12 @@ import SearchIcon from "./search.svg";
 import MovieCard from "./MovieCard";
 import "./App.css";
 
+//cb403330 = clé API
 
-//cb403330
+// On stock l'API dans une constante
 const API_URL = "http://www.omdbapi.com?apikey=cb403330";
 
+// Variable contenantles info de l'objet dans L'api
 const movie1 = {
   Title: "Superman, Spiderman or Batman",
   Year: "2011",
@@ -17,9 +19,10 @@ const movie1 = {
     "https://m.media-amazon.com/images/M/MV5BMjQ4MzcxNDU3N15BMl5BanBnXkFtZTgwOTE1MzMxNzE@._V1_SX300.jpg",
 };
 
+// Composant App
 const App = () => {
   const [movies, setMovies] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
   const searchMovies = async (title) => {
     const response = await fetch(`${API_URL}&s=${title}`);
@@ -30,7 +33,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    searchMovies("Spiderman");
+    searchMovies("Superman");
   }, []);
   return (
     <div className="app">
@@ -42,7 +45,11 @@ const App = () => {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <img src={SearchIcon} alt="search" onClick={() => searchMovies(searchTerm)} />
+        <img
+          src={SearchIcon}
+          alt="search"
+          onClick={() => searchMovies(searchTerm)}
+        />
       </div>
 
       {movies?.length > 0 ? (
